@@ -95,11 +95,16 @@ async def on_message(message):
                     pass
                 return
         if int(get_code_content) in verify_code:
-            await message.author.send('인증완료!')
+            logs_channel = 975748187878994021
+            #admins_id
+            await message.author.send(embed=discord.Embed(title="인증성공",description=f"> 인증한사람 : {message.author.name}#{message.author.discriminator}({message.author.id})\n> 인증메일 : {get_email_content}\n> 인증코드 : {get_code_content}",color=discord.Colour.green()))
+            await client.get_channel(logs_channel).send(f'||<@{admins_id}>||',embed=discord.Embed(title="인증성공",description=f"> 인증한사람 : {message.author.name}#{message.author.discriminator}({message.author.id})\n> 인증메일 : {get_email_content}\n> 인증코드 : {get_code_content}",color=discord.Colour.green()))
             fucking_user = message.author
             role = discord.utils.get(message.guild.roles, name="인증댐") #역할이름
             await fucking_user.add_roles(role)
         else:
-            await message.author.send('다시 시도 해 주세요.')               
+            logs_channel = 975748187878994021
+            await message.author.send(embed=discord.Embed(title="인증실패",description=f"> 인증한사람 : {message.author.name}#{message.author.discriminator}({message.author.id})\n> 인증메일 : {get_email_content}\n> 인증코드 : {get_code_content}\n> 실패사유 : 코드 불일치",color=discord.Colour.red()))
+            await client.get_channel(logs_channel).send(f'||<@{admins_id}>||',embed=discord.Embed(title="인증실패",description=f"> 인증한사람 : {message.author.name}#{message.author.discriminator}({message.author.id})\n> 인증메일 : {get_email_content}\n> 인증코드 : {get_code_content}\n> 실패사유 : 코드 불일치",color=discord.Colour.red()))               
 
 client.run(토큰)            
