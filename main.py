@@ -66,7 +66,7 @@ async def on_message(message):
                 verify_code.append(random_code)
                 mail_msg = MIMEMultipart()
                 con_tent = str(random_code) + f" \n{message.author.name}님 인증코드 입니다.\n보낸사람 : 화이트홀미만잡#6229\n받는사람 : {message.author.name}"
-                mail_msg['Subject'] = f'{message.guild.name}'s Verify Code : ' + str(verify_code) # 메일 제목
+                mail_msg['Subject'] = f"WhiteHole {message.guild.name}'s Verify Code : " + str(verify_code) # 메일 제목
                 mail_msg['From'] = 'whitehole'   
                 mail_msg['To'] = get_email_content
                 mail_msg.attach(MIMEText(con_tent, 'plain'))
